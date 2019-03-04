@@ -1,9 +1,10 @@
 const path = require('path');
-
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -30,8 +31,12 @@ module.exports = {
                 }
               },
               'sass-loader',
-              'postcss-loader']
+              'postcss-loader'
+            ]
        }
     ]
-  }
+  },
+  plugins: [new HtmlWebpackPlugin({
+    template: './src/index.html'
+  }),new CleanWebpackPlugin('./dist')]
 };
