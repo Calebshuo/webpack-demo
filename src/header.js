@@ -1,5 +1,3 @@
-
-
 function Header () {
   var root = document.getElementById('root')
   var div = document.createElement("DIV");

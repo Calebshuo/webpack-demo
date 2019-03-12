@@ -4,7 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "bundle": "webpack"
+    "bundle": "webpack",
+    "start": "webpack-dev-server --open",
+    "server": "node server.js"
   },
   "author": "caleb",
   "license": "ISC",
@@ -16,12 +18,15 @@
     "autoprefixer": "^9.4.9",
     "clean-webpack-plugin": "^1.0.1",
     "css-loader": "^2.1.0",
+    "express": "^4.16.4",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.11.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "url-loader": "^1.1.2"
+    "url-loader": "^1.1.2",
+    "webpack-dev-middleware": "^3.6.0",
+    "webpack-dev-server": "^3.2.1"
   }
 }

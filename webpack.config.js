@@ -1,8 +1,12 @@
-const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
+
 module.exports = {
-  entry: './src/index.js',
+  mode: 'development',
+  devtool: 'inline-source-map',
+  entry: './src/index.js', // {main:'./src/index.js'}默认output输出的文件是main.js，自定义名字是bundle.js
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -33,10 +37,27 @@ module.exports = {
               'sass-loader',
               'postcss-loader'
             ]
+       },
+       {
+        test: /\.css$/,
+        use: ['style-loader',
+              'css-loader',
+              'postcss-loader'
+            ]
        }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html'
-  }),new CleanWebpackPlugin('./dist')]
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Output Management',
+      template: './src/index.html'
+    }),
+    new CleanWebpackPlugin('./dist'),
+    new webpack.HotModuleReplacementPlugin()],
+  devServer: {
+    contentBase: './dist',
+    open: true,
+    hot: true,
+    hotOnly: true
+  }
 };

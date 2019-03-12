@@ -1,7 +1,7 @@
 function Bottom () {
   var root = document.getElementById('root')
-  var div = document.createElement("DIV");
-  div.innerHTML = "<h2>Bottom</h2>"
+  var div = document.createElement("div");
+  div.innerHTML = "Bottom"
   root.appendChild(div)
 }
 

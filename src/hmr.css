@@ -1,0 +1,3 @@
+#root div:nth-child(odd) {
+  background-color: blue;
+}
