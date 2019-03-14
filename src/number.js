@@ -1,7 +1,7 @@
 function number() {
   var div = document.createElement('div')
   div.setAttribute('id','number')
-  div.innerHTML = 4000
+  div.innerHTML = 9000
   root.appendChild(div)
 }
 

@@ -43,8 +43,9 @@ counter()
 number()
 if (module.hot) {
   module.hot.accept('./number', function() {
-    console.log('Accepting the updated printMe module!');
     root.removeChild(document.getElementById('number'))
     number();
   })
 }
+
+import './babel'

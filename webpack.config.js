@@ -44,6 +44,16 @@ module.exports = {
               'css-loader',
               'postcss-loader'
             ]
+       },
+       { 
+        test: /\.js$/, 
+        exclude: /node_modules/, 
+        loader: 'babel-loader',
+        options: {
+          // presets: [['@babel/preset-env'],{
+          //   useBuiltIns: 'usage'
+          // }]
+        }
        }
     ]
   },
@@ -53,7 +63,8 @@ module.exports = {
       template: './src/index.html'
     }),
     new CleanWebpackPlugin('./dist'),
-    new webpack.HotModuleReplacementPlugin()],
+    new webpack.HotModuleReplacementPlugin()
+  ],
   devServer: {
     contentBase: './dist',
     open: true,
