@@ -8,6 +8,7 @@ arr.map(item => {
   console.log(item)
 })
 
+// 对jsx进行打包
 import React from 'React'
 import ReactDOM from 'react-dom'
 

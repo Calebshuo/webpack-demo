@@ -4,11 +4,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   devtool: 'inline-source-map',
-  entry: './src/index.js', // {main:'./src/index.js'}默认output输出的文件是main.js，自定义名字是bundle.js
+  entry: {
+    main: './src/index.js',
+    // sub: './src/index.js'
+  }, // {main:'./src/index.js'}默认output输出的文件是main.js，自定义名字是bundle.js
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -57,6 +60,9 @@ module.exports = {
        }
     ]
   },
+  // optimization: {
+  //   usedExports: true
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',
