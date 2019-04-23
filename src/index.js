@@ -53,5 +53,21 @@
 
 // import './babel'
 
-import { add } from './shaking'
-add(1, 2)
+// import { add } from './shaking'
+// add(1, 2)
+
+// import _ from 'lodash'
+
+// console.log(_.join([1,2,3],'******'))
+
+function Component() {
+  return import('lodash').then(({ default: _ }) => {
+    var element = document.createElement('div')
+    element.innerHTML = _.join(['aaa','bbb'],'%%%%%')
+    return element
+  })
+}
+
+Component.then((v) => {
+  document.body.appendChild(v)
+})
