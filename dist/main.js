@@ -1,4 +1,53 @@
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/ 		var executeModules = data[2];
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 		// add entry modules from loaded chunk to deferred list
+/******/ 		deferredModules.push.apply(deferredModules, executeModules || []);
+/******/
+/******/ 		// run deferred modules when all chunks ready
+/******/ 		return checkDeferredModules();
+/******/ 	};
+/******/ 	function checkDeferredModules() {
+/******/ 		var result;
+/******/ 		for(var i = 0; i < deferredModules.length; i++) {
+/******/ 			var deferredModule = deferredModules[i];
+/******/ 			var fulfilled = true;
+/******/ 			for(var j = 1; j < deferredModule.length; j++) {
+/******/ 				var depId = deferredModule[j];
+/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 			}
+/******/ 			if(fulfilled) {
+/******/ 				deferredModules.splice(i--, 1);
+/******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 			}
+/******/ 		}
+/******/ 		return result;
+/******/ 	}
 /******/ 	function hotDisposeChunk(chunkId) {
 /******/ 		delete installedChunks[chunkId];
 /******/ 	}
@@ -63,7 +112,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0c0ddaa57b50162fe244";
+/******/ 	var hotCurrentHash = "81db769d7d6a614e67e7";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -258,7 +307,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "main";
+/******/ 			for(var chunkId in installedChunks)
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -703,6 +752,15 @@
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		"main": 0
+/******/ 	};
+/******/
+/******/ 	var deferredModules = [];
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
@@ -786,23 +844,18 @@
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
+/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
 /******/
-/******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./src/index.js")(__webpack_require__.s = "./src/index.js");
+/******/
+/******/ 	// add entry module to deferred list
+/******/ 	deferredModules.push(["./src/index.js","vendors~main","default~main"]);
+/******/ 	// run deferred modules when ready
+/******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nSyntaxError: /Users/lishuo/webpack-demo/src/index.js: Support for the experimental syntax 'dynamicImport' isn't currently enabled (64:10):\\n\\n\\u001b[0m \\u001b[90m 62 | \\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m 63 | \\u001b[39m\\u001b[36mfunction\\u001b[39m \\u001b[33mComponent\\u001b[39m() {\\u001b[0m\\n\\u001b[0m\\u001b[31m\\u001b[1m>\\u001b[22m\\u001b[39m\\u001b[90m 64 | \\u001b[39m  \\u001b[36mreturn\\u001b[39m \\u001b[36mimport\\u001b[39m(\\u001b[32m'lodash'\\u001b[39m)\\u001b[33m.\\u001b[39mthen(({ \\u001b[36mdefault\\u001b[39m\\u001b[33m:\\u001b[39m _ }) \\u001b[33m=>\\u001b[39m {\\u001b[0m\\n\\u001b[0m \\u001b[90m    | \\u001b[39m         \\u001b[31m\\u001b[1m^\\u001b[22m\\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m 65 | \\u001b[39m    \\u001b[36mvar\\u001b[39m element \\u001b[33m=\\u001b[39m document\\u001b[33m.\\u001b[39mcreateElement(\\u001b[32m'div'\\u001b[39m)\\u001b[0m\\n\\u001b[0m \\u001b[90m 66 | \\u001b[39m    element\\u001b[33m.\\u001b[39minnerHTML \\u001b[33m=\\u001b[39m _\\u001b[33m.\\u001b[39mjoin([\\u001b[32m'aaa'\\u001b[39m\\u001b[33m,\\u001b[39m\\u001b[32m'bbb'\\u001b[39m]\\u001b[33m,\\u001b[39m\\u001b[32m'%%%%%'\\u001b[39m)\\u001b[0m\\n\\u001b[0m \\u001b[90m 67 | \\u001b[39m    \\u001b[36mreturn\\u001b[39m element\\u001b[0m\\n\\nAdd @babel/plugin-syntax-dynamic-import (https://git.io/vb4Sv) to the 'plugins' section of your Babel config to enable parsing.\\n    at Object.raise (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:3831:17)\\n    at Object.expectPlugin (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:5148:18)\\n    at Object.parseExprAtom (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:6129:14)\\n    at Object.parseExprAtom (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:3552:20)\\n    at Object.parseExprSubscripts (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:5862:23)\\n    at Object.parseMaybeUnary (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:5842:21)\\n    at Object.parseExprOps (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:5729:23)\\n    at Object.parseMaybeConditional (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:5702:23)\\n    at Object.parseMaybeAssign (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:5647:21)\\n    at Object.parseExpression (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:5595:23)\\n    at Object.parseReturnStatement (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7617:28)\\n    at Object.parseStatementContent (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7295:21)\\n    at Object.parseStatement (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7243:17)\\n    at Object.parseBlockOrModuleBlockBody (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7810:25)\\n    at Object.parseBlockBody (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7797:10)\\n    at Object.parseBlock (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7786:10)\\n    at Object.parseFunctionBody (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:6876:24)\\n    at Object.parseFunctionBodyAndFinish (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:6860:10)\\n    at withTopicForbiddingContext (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7945:12)\\n    at Object.withTopicForbiddingContext (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7150:14)\\n    at Object.parseFunction (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7944:10)\\n    at Object.parseFunctionStatement (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7596:17)\\n    at Object.parseStatementContent (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7278:31)\\n    at Object.parseStatement (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7243:17)\\n    at Object.parseBlockOrModuleBlockBody (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7810:25)\\n    at Object.parseBlockBody (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7797:10)\\n    at Object.parseTopLevel (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:7181:10)\\n    at Object.parse (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:8660:17)\\n    at parse (/Users/lishuo/webpack-demo/node_modules/@babel/parser/lib/index.js:10660:38)\\n    at parser (/Users/lishuo/webpack-demo/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbXSwibWFwcGluZ3MiOiIiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/index.js\n");
-
-/***/ })
-
-/******/ });
+/******/ ([]);

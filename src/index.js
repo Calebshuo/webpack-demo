@@ -56,18 +56,21 @@
 // import { add } from './shaking'
 // add(1, 2)
 
-// import _ from 'lodash'
+import _ from 'lodash'
 
-// console.log(_.join([1,2,3],'******'))
+console.log(_.join([1,2,3],'******'))
 
-function Component() {
-  return import('lodash').then(({ default: _ }) => {
-    var element = document.createElement('div')
-    element.innerHTML = _.join(['aaa','bbb'],'%%%%%')
-    return element
-  })
-}
+// function Component() {
+//   return import(/* webpackChunkName: "lodash" */'lodash').then(({ default: _ }) => {
+//     var element = document.createElement('div')
+//     element.innerHTML = _.join(['aaa','bbb'],'%%%%%')
+//     return element
+//   })
+// }
 
-Component.then((v) => {
-  document.body.appendChild(v)
-})
+// Component().then((v) => {
+//   document.body.appendChild(v)
+// })
+
+import a from "./codespliting";
+console.log(a.name)
