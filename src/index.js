@@ -56,9 +56,9 @@
 // import { add } from './shaking'
 // add(1, 2)
 
-import _ from 'lodash'
+// import _ from 'lodash'
 
-console.log(_.join([1,2,3],'******'))
+// console.log(_.join([1,2,3],'******'))
 
 // function Component() {
 //   return import(/* webpackChunkName: "lodash" */'lodash').then(({ default: _ }) => {
@@ -72,5 +72,11 @@ console.log(_.join([1,2,3],'******'))
 //   document.body.appendChild(v)
 // })
 
-import a from "./codespliting";
-console.log(a.name)
+// import a from "./codespliting";
+// console.log(a.name)
+
+document.addEventListener('click', () => {
+  import(/* webpackPrefetch: true */ './prefetching').then(({default:_}) => {
+    _()
+  })
+})
