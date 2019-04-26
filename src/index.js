@@ -75,8 +75,12 @@
 // import a from "./codespliting";
 // console.log(a.name)
 
-document.addEventListener('click', () => {
-  import(/* webpackPrefetch: true */ './prefetching').then(({default:_}) => {
-    _()
-  })
-})
+// document.addEventListener('click', () => {
+//   import(/* webpackPrefetch: true */ './prefetching').then(({default:_}) => {
+//     _()
+//   })
+// })
+
+import './codespliting.css'
+import './codespliting2.css'
+console.log('hellow world')
