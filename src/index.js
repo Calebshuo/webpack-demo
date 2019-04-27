@@ -81,6 +81,14 @@
 //   })
 // })
 
-import './codespliting.css'
-import './codespliting2.css'
-console.log('hellow world')
+// import './codespliting.css'
+// import './codespliting2.css'
+// console.log('hellow world')
+
+import _ from 'lodash'
+import $ from 'jquery'
+import { ui } from './provideplugin'
+ui()
+const dom = $('div')
+dom.html(_.join(['caleb','shuooooooo'], '****'))
+$('body').append(dom)

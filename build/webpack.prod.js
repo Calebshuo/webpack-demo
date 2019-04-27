@@ -9,7 +9,7 @@ const prodConfig = {
     rules: [
        {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader,
+        use: [ MiniCssExtractPlugin.loader,
               {
                 loader:'css-loader',
                 options: {
@@ -23,7 +23,7 @@ const prodConfig = {
        },
        {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader,
+        use: [ MiniCssExtractPlugin.loader,
               'css-loader',
               'postcss-loader'
             ]
@@ -35,6 +35,10 @@ const prodConfig = {
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin({})],
   },
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
+  }
 }
 
 module.exports = merge(commonConfig, prodConfig)

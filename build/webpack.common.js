@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -10,8 +11,6 @@ module.exports = {
   },
   // 路径是默认从webpack-demo开始的，所以上面路径不能写成'../src/index.js'
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist')
   },
   plugins: [
@@ -23,29 +22,26 @@ module.exports = {
         root: path.resolve(__dirname, '../')
       }),
       // new BundleAnalyzerPlugin()
+      new webpack.ProvidePlugin({
+        $: 'jquery'
+      })
     ],
-    // optimization: {
-    //   splitChunks: {
-        // chunks: 'all',
-        // minSize: 0, // 大于这个数值的其他引入文件会被进行代码分隔
-        // maxSize: 0, // 用得不多。比如一个模块20mb然后会按照这个数值再次进行拆分（如果可以拆的话。）
-        // minChunks: 1,// 被用了至少多少次后才会进行代码分隔。
-        // maxAsyncRequests: 5, // 最多只进行5次代码分隔，超过了就不做了（防止客户端进行过多的http请求）。这个配置用默认的就可以了。
-        // maxInitialRequests: 3, // 入口文件引入的库最多可以分隔出三个文件。这个配置用默认的就可以了。
-        // automaticNameDelimiter: '~',// 文件连接符
-        // name: true, // cachegroups里面的filename有效。（一般不会改）
-        // cacheGroups: { // 如果是node_modules里面的文件就打包到code.js里面去，如果不是就走default（打包到codespliting.js里面去）。
-        //   vendors: {
-        //     test: /[\\/]node_modules[\\/]/,
-        //     priority: -10, // 判断优先级。数值越大优先级越高。
-        //     filename: 'lodash.js'
-        //   },
-        //   default: {
-        //     filename:'codespliting.js',
-        //     priority: -20,
-        //     reuseExistingChunk: true // 如果一个模块被打包过了，那么我就忽略这个模块直接去使用之前已经打包过的代码。
-        //   }
-        // }
-      // }
-    // }
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: { // 如果是node_modules里面的文件就打包到code.js里面去，如果不是就走default（打包到codespliting.js里面去）。
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10, // 判断优先级。数值越大优先级越高。
+            // filename: 'vendors.js'
+            name: 'nodemodules'
+          },
+          default: {
+            // filename:'codespliting.js',
+            priority: -20,
+            reuseExistingChunk: true // 如果一个模块被打包过了，那么我就忽略这个模块直接去使用之前已经打包过的代码。
+          }
+        }
+      }
+    }
 }
