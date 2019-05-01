@@ -11,7 +11,7 @@ module.exports = {
   },
   // 路径是默认从webpack-demo开始的，所以上面路径不能写成'../src/index.js'
   output: {
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist') // output的path属性必须为绝对路径，这句话不写也会有默认的：path: path.resolve(__dirname, '/dist')。
   },
   plugins: [
       new HtmlWebpackPlugin({
