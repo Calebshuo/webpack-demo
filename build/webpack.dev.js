@@ -6,10 +6,11 @@ const devConfig = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   devServer: {
+    overlay: true,
     contentBase: './dist',
     open: true,
-    hot: true,
-    hotOnly: true
+    // hot: true,
+    // hotOnly: true
   },
   optimization: {
     usedExports: true
@@ -52,9 +53,13 @@ const devConfig = {
             ]
        },
        { 
-        test: /\.js$/, 
+        test: /\.jsx?$/, 
         exclude: /node_modules/, 
-        loader: 'babel-loader'
+        use: [
+          'babel-loader',
+          'eslint-loader'
+        ]
+        // loader: 'babel-loader'
         // options: {
         //   presets: [['@babel/preset-env'],{
         //     useBuiltIns: 'usage'

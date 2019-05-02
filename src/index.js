@@ -85,19 +85,32 @@
 // import './codespliting2.css'
 // console.log('hellow world')
 
-import _ from 'lodash'
-import $ from 'jquery'
-import { ui } from './provideplugin'
-ui()
-const dom = $('div')
-dom.html(_.join(['caleb','shuooooooo'], '****'))
-$('body').append(dom)
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').then(registration => {
-      console.log('SW registered: ', registration);
-    }).catch(registrationError => {
-      console.log('SW registration failed: ', registrationError);
-    });
-  });
+// import _ from 'lodash'
+// import $ from 'jquery'
+// import { ui } from './provideplugin'
+// ui()
+// const dom = $('div')
+// dom.html(_.join(['caleb','shuooooooo'], '****'))
+// $('body').append(dom)
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
+//       console.log('SW registered: ', registration);
+//     }).catch(registrationError => {
+//       console.log('SW registration failed: ', registrationError);
+//     });
+//   });
+// }
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Child from 'child'
+class App extends React.Component {
+  render() {
+    return <div>
+            react demo1
+            <Child/>
+           </div>
+  }
 }
+ReactDOM.render(<App/>,document.getElementById('root'))

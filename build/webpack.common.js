@@ -13,6 +13,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist') // output的path属性必须为绝对路径，这句话不写也会有默认的：path: path.resolve(__dirname, '/dist')。
   },
+  resolve: {
+    extensions: ['.js','.jsx'],
+    mainFiles: ['index','child'],
+    alias: {
+      child: path.resolve(__dirname,'../src/child/a')
+    }
+  },
   plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html'
