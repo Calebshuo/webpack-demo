@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack')
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -31,24 +32,34 @@ module.exports = {
       // new BundleAnalyzerPlugin()
       new webpack.ProvidePlugin({
         $: 'jquery'
+      }),
+      new AddAssetHtmlWebpackPlugin({
+        filepath: path.resolve(__dirname, '../dll/vendors.dll.js')
+      }),
+      new webpack.DllReferencePlugin({
+        manifest: path.resolve(__dirname, '../dll/vendors.manifest.js')
       })
     ],
-    optimization: {
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: { // 如果是node_modules里面的文件就打包到code.js里面去，如果不是就走default（打包到codespliting.js里面去）。
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            priority: -10, // 判断优先级。数值越大优先级越高。
-            // filename: 'vendors.js'
-            name: 'nodemodules'
-          },
-          default: {
-            // filename:'codespliting.js',
-            priority: -20,
-            reuseExistingChunk: true // 如果一个模块被打包过了，那么我就忽略这个模块直接去使用之前已经打包过的代码。
-          }
+  optimization: {
+    runtimeChunk: {
+			name: 'runtime'
+    },
+    usedExports: true,
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: { // 如果是node_modules里面的文件就打包到vendors.js里面去，如果不是就走default（打包到codespliting.js里面去）。
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10, // 判断优先级。数值越大优先级越高。
+          // filename: 'vendors.js'
+          name: 'nodemodules'
+        },
+        default: {
+          // filename:'codespliting.js',
+          priority: -20,
+          reuseExistingChunk: true // 如果一个模块被打包过了，那么我就忽略这个模块直接去使用之前已经打包过的代码。
         }
       }
     }
+  }
 }

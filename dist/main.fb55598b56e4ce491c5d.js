@@ -1,27 +1,35 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
+
+/***/ 5:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 // import Header from './header'
 // import Sider from './sider'
 // import Bottom from './bottom'
 // import './index.scss'
-
 // import './outavatar'
 // import Boy from './boy.png'
 // console.log(Boy)
-
 // css模块化
 // import style from './index.scss'
 // var myIcon = new Image()
 // myIcon.src = require('./boy.png')
 // myIcon.classList.add(style.avatar) // add('avatar')
-
 // import './hmr.css' // css-loader实现了module.hot的那段hmr的代码。vue、react同理。
 // import number from './number'
-
 // var root = document.getElementById('root')
 // root.appendChild(myIcon)
 // new Header()
 // new Sider()
 // new Bottom()
-
 // hmr css css-loader底层实现了hmr
 // var btn = document.createElement('button')
 // btn.innerHTML = 'create'
@@ -31,7 +39,6 @@
 //   div.innerHTML = 'item'
 //   root.appendChild(div)
 // }
-
 // hmr js 需要手动写module.hot.accept
 // function counter() {
 //   var div = document.createElement('div')
@@ -50,16 +57,11 @@
 //     number();
 //   })
 // }
-
 // import './babel'
-
 // import { add } from './shaking'
 // add(1, 2)
-
 // import _ from 'lodash'
-
 // console.log(_.join([1,2,3],'******'))
-
 // function Component() {
 //   return import(/* webpackChunkName: "lodash" */'lodash').then(({ default: _ }) => {
 //     var element = document.createElement('div')
@@ -67,24 +69,19 @@
 //     return element
 //   })
 // }
-
 // Component().then((v) => {
 //   document.body.appendChild(v)
 // })
-
 // import a from "./codespliting";
 // console.log(a.name)
-
 // document.addEventListener('click', () => {
 //   import(/* webpackPrefetch: true */ './prefetching').then(({default:_}) => {
 //     _()
 //   })
 // })
-
 // import './codespliting.css'
 // import './codespliting2.css'
 // console.log('hellow world')
-
 // import _ from 'lodash'
 // import $ from 'jquery'
 // import { ui } from './provideplugin'
@@ -102,16 +99,20 @@
 //   });
 // }
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-// import Child from 'child'
-import _ from 'lodash'
-class App extends React.Component {
+ // import Child from 'child'
+
+
+
+class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   render() {
-    return <div>
-            {_.join(['caleb','1234'],'*****')}
-            {/* <Child/> */}
-           </div>
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, lodash__WEBPACK_IMPORTED_MODULE_2___default.a.join(['caleb', '1234'], '*****'));
   }
+
 }
-ReactDOM.render(<App/>,document.getElementById('root'))
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('root'));
+
+/***/ })
+
+},[[5,2,1]]]);
+//# sourceMappingURL=main.fb55598b56e4ce491c5d.js.map
