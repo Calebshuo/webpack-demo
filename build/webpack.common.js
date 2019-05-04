@@ -4,6 +4,37 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack')
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
+const fs = require('fs')
+
+const plugins = [
+  new HtmlWebpackPlugin({
+    template: 'src/index.html'
+  }),
+  // CleanWebpackPlugin默认会认为build文件夹就是根目录，不允许删除根目录以外的目录，所以不可以直接写../dist。所以需要配置根路径让插件知道上一级目录才是根路径。
+  new CleanWebpackPlugin('./dist', {
+    root: path.resolve(__dirname, '../')
+  }),
+]
+const files = fs.readdirSync(path.resolve(__dirname,'../dll'))
+console.log('#####files',files)
+files.forEach(file => {
+  if(/.*\.dll\.js/.test(file)) {
+    console.log(1111111,file)
+    plugins.push(
+      new AddAssetHtmlWebpackPlugin({
+        filepath: path.resolve(__dirname, '../dll',file)
+      })
+    )
+  }
+  if(/.*\.manifest\.json/.test(file)) {
+    console.log(222222,file)
+    plugins.push(
+      new webpack.DllReferencePlugin({
+          manifest: path.resolve(__dirname, '../dll',file)
+      })
+    )
+  }
+})
 
 module.exports = {
   entry: {
@@ -21,25 +52,26 @@ module.exports = {
       child: path.resolve(__dirname,'../src/child/a')
     }
   },
-  plugins: [
-      new HtmlWebpackPlugin({
-        template: 'src/index.html'
-      }),
-      // CleanWebpackPlugin默认会认为build文件夹就是根目录，不允许删除根目录以外的目录，所以不可以直接写../dist。所以需要配置根路径让插件知道上一级目录才是根路径。
-      new CleanWebpackPlugin('./dist', {
-        root: path.resolve(__dirname, '../')
-      }),
-      // new BundleAnalyzerPlugin()
-      new webpack.ProvidePlugin({
-        $: 'jquery'
-      }),
-      new AddAssetHtmlWebpackPlugin({
-        filepath: path.resolve(__dirname, '../dll/vendors.dll.js')
-      }),
-      new webpack.DllReferencePlugin({
-        manifest: path.resolve(__dirname, '../dll/vendors.manifest.js')
-      })
-    ],
+  // plugins: [
+  //     new HtmlWebpackPlugin({
+  //       template: 'src/index.html'
+  //     }),
+  //     // CleanWebpackPlugin默认会认为build文件夹就是根目录，不允许删除根目录以外的目录，所以不可以直接写../dist。所以需要配置根路径让插件知道上一级目录才是根路径。
+  //     new CleanWebpackPlugin('./dist', {
+  //       root: path.resolve(__dirname, '../')
+  //     }),
+  //     // new BundleAnalyzerPlugin(),
+  //     new webpack.ProvidePlugin({
+  //       $: 'jquery'
+  //     }),
+  //     new AddAssetHtmlWebpackPlugin({
+  //       filepath: path.resolve(__dirname, '../dll/vendors.dll.js')
+  //     }),
+  //     new webpack.DllReferencePlugin({
+  //       manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
+  //     })
+  //   ],
+  plugins,
   optimization: {
     runtimeChunk: {
 			name: 'runtime'
