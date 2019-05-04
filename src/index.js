@@ -102,15 +102,27 @@
 //   });
 // }
 
+// import React from 'react'
+// import ReactDOM from 'react-dom'
+// // import Child from 'child'
+// // import _ from 'lodash'
+// class App extends React.Component {
+//   render() {
+//     return <div>
+//             {_.join(['caleb','1234'],'*****')}
+//             {/* <Child/> */}
+//            </div>
+//   }
+// }
+// ReactDOM.render(<App/>,document.getElementById('root'))
+
+// 多页面打包
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import Child from 'child'
-import _ from 'lodash'
 class App extends React.Component {
   render() {
     return <div>
-            {_.join(['caleb','1234'],'*****')}
-            {/* <Child/> */}
+              This is homepage
            </div>
   }
 }

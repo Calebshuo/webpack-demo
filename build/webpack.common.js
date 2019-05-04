@@ -6,40 +6,46 @@ const webpack = require('webpack')
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 const fs = require('fs')
 
-const plugins = [
-  new HtmlWebpackPlugin({
-    template: 'src/index.html'
-  }),
-  // CleanWebpackPlugin默认会认为build文件夹就是根目录，不允许删除根目录以外的目录，所以不可以直接写../dist。所以需要配置根路径让插件知道上一级目录才是根路径。
-  new CleanWebpackPlugin('./dist', {
-    root: path.resolve(__dirname, '../')
-  }),
-]
-const files = fs.readdirSync(path.resolve(__dirname,'../dll'))
-console.log('#####files',files)
-files.forEach(file => {
-  if(/.*\.dll\.js/.test(file)) {
-    console.log(1111111,file)
+const makePlugins = (configs) => {
+  const plugins = [
+    // CleanWebpackPlugin默认会认为build文件夹就是根目录，不允许删除根目录以外的目录，所以不可以直接写../dist。所以需要配置根路径让插件知道上一级目录才是根路径。
+    new CleanWebpackPlugin('./dist', {
+      root: path.resolve(__dirname, '../')
+    })
+  ]
+  Object.keys(configs.entry).forEach(v => {
     plugins.push(
-      new AddAssetHtmlWebpackPlugin({
-        filepath: path.resolve(__dirname, '../dll',file)
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        filename: `${v}.html`,
+        chunks: ['runtime', 'nodemodules', v]
       })
     )
-  }
-  if(/.*\.manifest\.json/.test(file)) {
-    console.log(222222,file)
-    plugins.push(
-      new webpack.DllReferencePlugin({
-          manifest: path.resolve(__dirname, '../dll',file)
-      })
-    )
-  }
-})
+  })
+  const files = fs.readdirSync(path.resolve(__dirname,'../dll'))
+  files.forEach(file => {
+    if(/.*\.dll\.js/.test(file)) {
+      plugins.push(
+        new AddAssetHtmlWebpackPlugin({
+          filepath: path.resolve(__dirname, '../dll',file)
+        })
+      )
+    }
+    if(/.*\.manifest\.json/.test(file)) {
+      plugins.push(
+        new webpack.DllReferencePlugin({
+            manifest: path.resolve(__dirname, '../dll',file)
+        })
+      )
+    }
+  })
+  return plugins
+}
 
-module.exports = {
+const configs = {
   entry: {
-    main: './src/index.js',
-    // sub: './src/index.js'
+    index: './src/index.js',
+    list: './src/list.js'
   },
   // 路径是默认从webpack-demo开始的，所以上面路径不能写成'../src/index.js'
   output: {
@@ -71,7 +77,6 @@ module.exports = {
   //       manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
   //     })
   //   ],
-  plugins,
   optimization: {
     runtimeChunk: {
 			name: 'runtime'
@@ -95,3 +100,7 @@ module.exports = {
     }
   }
 }
+
+configs.plugins = makePlugins(configs)
+
+module.exports = configs
