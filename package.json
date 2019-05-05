@@ -4,14 +4,13 @@
     "*.css"
   ],
   "version": "1.0.0",
-  "description": "",
   "private": true,
   "scripts": {
     "dev-build": "webpack --profile --json > stats.json --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.prod.js",
     "dev": "webpack-dev-server --config ./build/webpack.dev.js",
     "start": "http-server ./dist",
-    "build:dll":"webpack --config ./build/webpack.dll.js"
+    "build:dll": "webpack --config ./build/webpack.dll.js"
   },
   "author": "caleb",
   "license": "ISC",
@@ -58,5 +57,16 @@
     "workbox-webpack-plugin": "^4.3.0",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
-  }
+  },
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Calebshuo/webpack-demo.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Calebshuo/webpack-demo/issues"
+  },
+  "homepage": "https://github.com/Calebshuo/webpack-demo#readme",
+  "description": ""
 }

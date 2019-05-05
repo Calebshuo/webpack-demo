@@ -5,10 +5,11 @@ module.exports = {
 	entry: {
 		main: './src/index.js'
 	},
-	// resolveLoader: {
-	// 	modules: ['node_modules', './loaders']
-	// },
+	resolveLoader: {
+		modules: ['node_modules', './loaders']
+	},
 	module: {
+    // loader顺序是从下到上
 		rules: [{
 			test: /\.js/,
 			use: [
