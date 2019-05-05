@@ -22,7 +22,7 @@
 // new Sider()
 // new Bottom()
 
-// hmr css css-loader底层实现了hmr
+// // hmr css css-loader底层实现了hmr
 // var btn = document.createElement('button')
 // btn.innerHTML = 'create'
 // root.appendChild(btn)
@@ -32,7 +32,7 @@
 //   root.appendChild(div)
 // }
 
-// hmr js 需要手动写module.hot.accept
+// // hmr js 需要手动写module.hot.accept
 // function counter() {
 //   var div = document.createElement('div')
 //   div.setAttribute('id','counter')
@@ -117,13 +117,13 @@
 // ReactDOM.render(<App/>,document.getElementById('root'))
 
 // 多页面打包
-import React from 'react'
-import ReactDOM from 'react-dom'
-class App extends React.Component {
-  render() {
-    return <div>
-              This is homepage
-           </div>
-  }
-}
-ReactDOM.render(<App/>,document.getElementById('root'))
+// import React from 'react'
+// import ReactDOM from 'react-dom'
+// class App extends React.Component {
+//   render() {
+//     return <div>
+//               This is homepage
+//            </div>
+//   }
+// }
+// ReactDOM.render(<App/>,document.getElementById('root'))

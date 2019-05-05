@@ -16,7 +16,7 @@ const devConfig = {
     usedExports: true
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     rules: [

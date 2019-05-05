@@ -11,7 +11,10 @@ const makePlugins = (configs) => {
     // CleanWebpackPlugin默认会认为build文件夹就是根目录，不允许删除根目录以外的目录，所以不可以直接写../dist。所以需要配置根路径让插件知道上一级目录才是根路径。
     new CleanWebpackPlugin('./dist', {
       root: path.resolve(__dirname, '../')
-    })
+    }),
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery'
+    // })
   ]
   Object.keys(configs.entry).forEach(v => {
     plugins.push(
