@@ -15,9 +15,10 @@ module.exports = {
 			use: [
 				{
           loader: path.resolve(__dirname, './loaders/replaceLoader.js'),
-          options: {
-            name: 'lee'
-          }
+          // options: {
+          //   name: 'lee'
+          // }
+          query: 'caleb'
 				},
 				// {
 				// 	loader: 'replaceLoaderAsync',

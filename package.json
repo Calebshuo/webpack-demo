@@ -15,6 +15,7 @@
   "author": "caleb",
   "license": "ISC",
   "dependencies": {
+    "@babel/parser": "^7.4.4",
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.4",
     "@babel/runtime-corejs2": "^7.3.4",
