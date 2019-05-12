@@ -127,3 +127,17 @@
 //   }
 // }
 // ReactDOM.render(<App/>,document.getElementById('root'))
+
+import React, { useState, useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom'
+
+function App() {
+  // 声明一个叫 “count” 的 state 变量。
+  const [text, setText] = useState('');
+  const ref = useRef()
+  
+  const handleChange = (e) => {
+    setText(e.target.value)
+  }
+}
+ReactDOM.render(<Example/>,document.getElementById('root'))

@@ -1,35 +1,31 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[1],[
-/* 0 */,
-/* 1 */,
-/* 2 */,
-/* 3 */
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(5);
+module.exports = (__webpack_require__(1))(2);
 
 /***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 1 */
+/***/ (function(module, exports) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ui; });
-function ui() {
-  $('body').css('background', 'green');
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+module.exports = reactDom;
 
 /***/ }),
-/* 5 */,
-/* 6 */
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(1))(9);
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(0);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _provideplugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 // import Header from './header'
 // import Sider from './sider'
 // import Bottom from './bottom'
@@ -101,23 +97,23 @@ __webpack_require__.r(__webpack_exports__);
 // import './codespliting.css'
 // import './codespliting2.css'
 // console.log('hellow world')
-
-
-
-Object(_provideplugin__WEBPACK_IMPORTED_MODULE_2__[/* ui */ "a"])();
-const dom = jquery__WEBPACK_IMPORTED_MODULE_1___default()('div');
-dom.html(lodash__WEBPACK_IMPORTED_MODULE_0___default.a.join(['caleb', 'shuooooooo'], '****'));
-jquery__WEBPACK_IMPORTED_MODULE_1___default()('body').append(dom);
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').then(registration => {
-      console.log('SW registered: ', registration);
-    }).catch(registrationError => {
-      console.log('SW registration failed: ', registrationError);
-    });
-  });
-} // import React from 'react'
+// import _ from 'lodash'
+// import $ from 'jquery'
+// import { ui } from './provideplugin'
+// ui()
+// const dom = $('div')
+// dom.html(_.join(['caleb','shuooooooo'], '****'))
+// $('body').append(dom)
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
+//       console.log('SW registered: ', registration);
+//     }).catch(registrationError => {
+//       console.log('SW registration failed: ', registrationError);
+//     });
+//   });
+// }
+// import React from 'react'
 // import ReactDOM from 'react-dom'
 // // import Child from 'child'
 // // import _ from 'lodash'
@@ -142,12 +138,18 @@ if ('serviceWorker' in navigator) {
 // }
 // ReactDOM.render(<App/>,document.getElementById('root'))
 
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
 
-module.exports = vendors;
+
+function Example() {
+  // 声明一个叫 “count” 的 state 变量。
+  const [count, setCount] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You clicked ", count, " times"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => setCount(count + 1)
+  }, "Click me"));
+}
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Example, null), document.getElementById('root'));
 
 /***/ })
-],[[6,0,3]]]);
-//# sourceMappingURL=index.986a80210a7006dcb4a8.js.map
+],[[3,0]]]);
+//# sourceMappingURL=index.c187efdbc007068f43be.js.map
